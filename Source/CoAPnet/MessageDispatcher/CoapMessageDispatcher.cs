@@ -1,6 +1,7 @@
 using CoAPnet.Protocol;
 using System;
 using System.Collections.Concurrent;
+using System.Linq;
 
 namespace CoAPnet.MessageDispatcher
 {
@@ -30,6 +31,7 @@ namespace CoAPnet.MessageDispatcher
                 throw new ArgumentNullException(nameof(message));
             }
 
+            message.PayloadBytes = message.Payload.ToArray();
             if (_awaiters.TryRemove(message.Id, out var awaiter))
             {
                 awaiter.Complete(message);

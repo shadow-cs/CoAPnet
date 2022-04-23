@@ -35,5 +35,7 @@ namespace CoAPnet.Protocol
         {
             get; set;
         }
+
+        public byte[] PayloadBytes { get; set; }
     }
 }
